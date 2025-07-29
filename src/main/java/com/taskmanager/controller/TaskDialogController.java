@@ -12,15 +12,24 @@ import java.util.ResourceBundle;
 
 public class TaskDialogController implements Initializable {
 
-    @FXML private TextField titleField;
-    @FXML private TextArea descriptionArea;
-    @FXML private ComboBox<Task.Priority> priorityComboBox;
-    @FXML private ComboBox<Task.Status> statusComboBox;
-    @FXML private DatePicker dueDatePicker;
-    @FXML private Button clearDateButton;
-    @FXML private VBox additionalInfoBox;
-    @FXML private Label createdAtLabel;
-    @FXML private Label completedAtLabel;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextArea descriptionArea;
+    @FXML
+    private ComboBox<Task.Priority> priorityComboBox;
+    @FXML
+    private ComboBox<Task.Status> statusComboBox;
+    @FXML
+    private DatePicker dueDatePicker;
+    @FXML
+    private Button clearDateButton;
+    @FXML
+    private VBox additionalInfoBox;
+    @FXML
+    private Label createdAtLabel;
+    @FXML
+    private Label completedAtLabel;
 
     private Task editingTask;
     private boolean editingMode;
@@ -182,7 +191,7 @@ public class TaskDialogController implements Initializable {
     }
 
     private void performValidation() {
-        // La validation est gérée automatiquement par le dialogue
+        // /// je vais le fair  :)
     }
 
     private boolean validateForm() {
@@ -190,7 +199,4 @@ public class TaskDialogController implements Initializable {
         return titleText != null && !titleText.trim().isEmpty();
     }
 
-    public boolean hasValidData() {
-        return validateForm();
-    }
 }
