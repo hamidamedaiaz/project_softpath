@@ -9,14 +9,12 @@
     <content>
         <VBox spacing="15.0">
             <children>
-                <!-- Titre du dialogue -->
                 <Label text="Informations de la Tâche">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
 
-                <!-- Champ Titre -->
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Titre *:" />
@@ -24,7 +22,6 @@
                     </children>
                 </VBox>
 
-                <!-- Champ Description -->
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Description:" />
@@ -32,10 +29,8 @@
                     </children>
                 </VBox>
 
-                <!-- Ligne avec Priorité et Statut -->
                 <HBox spacing="15.0">
                     <children>
-                        <!-- Priorité -->
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label text="Priorité:" />
@@ -43,7 +38,6 @@
                             </children>
                         </VBox>
 
-                        <!-- Statut -->
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label text="Statut:" />
@@ -53,7 +47,6 @@
                     </children>
                 </HBox>
 
-                <!-- Date d'échéance -->
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Date d'échéance:" />
@@ -66,7 +59,6 @@
                     </children>
                 </VBox>
 
-                <!-- Informations supplémentaires (visible seulement en mode édition) -->
                 <VBox fx:id="additionalInfoBox" spacing="5.0" visible="false">
                     <children>
                         <Separator />
@@ -79,7 +71,6 @@
 
                         <HBox spacing="15.0">
                             <children>
-                                <!-- Date de création -->
                                 <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Créée le:" />
@@ -87,7 +78,6 @@
                                     </children>
                                 </VBox>
 
-                                <!-- Date de completion -->
                                 <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Terminée le:" />
@@ -99,7 +89,6 @@
                     </children>
                 </VBox>
 
-                <!-- Note d'aide -->
                 <Label text="* Champs obligatoires" textFill="GRAY">
                     <font>
                         <Font size="10.0" />
@@ -112,7 +101,6 @@
         </VBox>
     </content>
 
-    <!-- Boutons du dialogue -->
     <buttonTypes>
         <ButtonType fx:constant="OK" />
         <ButtonType fx:constant="CANCEL" />

@@ -16,11 +16,17 @@ public class TaskManagerApplication extends Application {
 
             Scene mainScene = new Scene(root, 1200, 800);
 
+
+
+
             String cssPath = getClass().getResource("/css/styles.css").toExternalForm();
             mainScene.getStylesheets().add(cssPath);
 
+
+
             primaryStage.setTitle("Gestionnaire de Tâches");
             primaryStage.setScene(mainScene);
+
             primaryStage.setMinWidth(800);
 
             primaryStage.setMinHeight(600);

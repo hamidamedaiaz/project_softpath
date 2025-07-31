@@ -1,6 +1,8 @@
 package com.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.taskmanager.enums.Priority;
+import com.taskmanager.enums.Status;
 import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,55 +19,8 @@ public class Task {
     private ObjectProperty<LocalDateTime> createdAt;
     private ObjectProperty<LocalDateTime> completedAt;
 
-    public enum Priority {
-        LOW("Faible", "#4CAF50"),
-        MEDIUM("Moyenne", "#FF9800"),
-        HIGH("Élevée", "#F44336");
-
-        private String displayName;
-        private String color;
-
-        Priority(String displayName, String color) {
-            this.displayName = displayName;
-            this.color = color;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-
-        public String getColor() {
-            return color;
-        }
-    }
-
-    public enum Status {
-        TODO("À faire"),
-        IN_PROGRESS("En cours"),
-        COMPLETED("Terminée");
-
-        private String displayName;
-
-        Status(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-    }
-
     public Task() {
         initializeProperties();
-        setDefaultValues();
-    }
-
-    public Task(String title, String description) {
-        initializeProperties();
-        this.title.set(title);
-
-
-        this.description.set(description);
         setDefaultValues();
     }
 
@@ -114,9 +69,6 @@ public class Task {
         this.description.setValue(description);
     }
 
-
-
-
     public Priority getPriority() {
         return this.priority.getValue();
     }
@@ -124,8 +76,6 @@ public class Task {
     public void setPriority(Priority priority) {
         this.priority.setValue(priority);
     }
-
-
 
     public Status getStatus() {
         return this.status.getValue();
@@ -142,9 +92,6 @@ public class Task {
         }
     }
 
-
-
-
     public LocalDate getDueDate() {
         return this.dueDate.getValue();
     }
@@ -152,7 +99,6 @@ public class Task {
     public void setDueDate(LocalDate dueDate) {
         this.dueDate.setValue(dueDate);
     }
-
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public LocalDateTime getCreatedAt() {
@@ -163,9 +109,6 @@ public class Task {
         this.createdAt.setValue(createdAt);
     }
 
-
-
-
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public LocalDateTime getCompletedAt() {
         return this.completedAt.getValue();
@@ -174,8 +117,6 @@ public class Task {
     public void setCompletedAt(LocalDateTime completedAt) {
         this.completedAt.setValue(completedAt);
     }
-
-
 
     public boolean isOverdue() {
         LocalDate due = getDueDate();
@@ -195,14 +136,13 @@ public class Task {
         return due.isEqual(today);
     }
 
-
-
-
     @Override
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
         sb.append("Task{");
         sb.append("id=").append(getId());
+
         sb.append(", title='").append(getTitle()).append('\'');
         sb.append(", priority=").append(getPriority());
         sb.append(", status=").append(getStatus());
@@ -215,6 +155,7 @@ public class Task {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
+
         if (getClass() != obj.getClass()) return false;
 
         Task other = (Task) obj;

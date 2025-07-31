@@ -1,31 +1,24 @@
-/* ================================
-   Gestionnaire de Tâches - Styles CSS
-   ================================ */
-
-/* === VARIABLES DE COULEURS === */
 .root {
-    -fx-primary-color: #2196F3;        /* Bleu principal */
-    -fx-primary-dark: #1976D2;         /* Bleu foncé */
-    -fx-primary-light: #BBDEFB;        /* Bleu clair */
-    -fx-accent-color: #FF5722;         /* Orange accent */
-    -fx-success-color: #4CAF50;        /* Vert succès */
-    -fx-warning-color: #FF9800;        /* Orange warning */
-    -fx-error-color: #F44336;          /* Rouge erreur */
-    -fx-background-color: #FAFAFA;     /* Arrière-plan général */
-    -fx-surface-color: #FFFFFF;        /* Surfaces (cartes) */
-    -fx-text-primary: #212121;         /* Texte principal */
-    -fx-text-secondary: #757575;       /* Texte secondaire */
-    -fx-divider-color: #E0E0E0;        /* Lignes de séparation */
+    -fx-primary-color: #2196F3;
+    -fx-primary-dark: #1976D2;
+    -fx-primary-light: #BBDEFB;
+    -fx-accent-color: #FF5722;
+    -fx-success-color: #4CAF50;
+    -fx-warning-color: #FF9800;
+    -fx-error-color: #F44336;
+    -fx-background-color: #FAFAFA;
+    -fx-surface-color: #FFFFFF;
+    -fx-text-primary: #212121;
+    -fx-text-secondary: #757575;
+    -fx-divider-color: #E0E0E0;
 }
 
-/* === STYLES GÉNÉRAUX === */
 .root {
     -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 14px;
     -fx-background-color: -fx-background-color;
 }
 
-/* === MENU BAR === */
 .menu-bar {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -47,7 +40,7 @@
     -fx-background-color: -fx-primary-light;
 }
 
-/* === BOUTONS === */
+
 .button {
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
@@ -76,7 +69,6 @@
     -fx-effect: none;
 }
 
-/* Boutons secondaires */
 .button.secondary {
     -fx-background-color: #E0E0E0;
     -fx-text-fill: -fx-text-primary;
@@ -86,7 +78,6 @@
     -fx-background-color: #D5D5D5;
 }
 
-/* Boutons de danger */
 .button.danger {
     -fx-background-color: -fx-error-color;
 }
@@ -95,7 +86,7 @@
     -fx-background-color: derive(-fx-error-color, -10%);
 }
 
-/* === TOGGLE BUTTONS (FILTRES) === */
+
 .toggle-button {
     -fx-background-color: #E0E0E0;
     -fx-text-fill: -fx-text-primary;
@@ -120,7 +111,6 @@
     -fx-background-color: -fx-primary-dark;
 }
 
-/* === TEXT FIELDS ET TEXT AREAS === */
 .text-field, .text-area {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -134,14 +124,12 @@
 .text-field:focused, .text-area:focused {
     -fx-border-color: -fx-primary-color;
     -fx-border-width: 2;
-    -fx-effect: dropshadow(gaussian, derive(-fx-primary-color, 20%), 3, 0.0, 0, 0);
 }
 
 .text-area .content {
     -fx-background-color: -fx-surface-color;
 }
 
-/* === COMBOBOX === */
 .combo-box {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -164,7 +152,7 @@
     -fx-background-color: -fx-text-secondary;
 }
 
-/* === TABLEVIEW === */
+
 .table-view {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -207,7 +195,7 @@
     -fx-background-color: #E3F2FD;
 }
 
-/* === STYLES SPÉCIAUX POUR LES TÂCHES === */
+
 .table-row-cell.overdue-task {
     -fx-background-color: #FFEBEE;
     -fx-border-color: -fx-error-color;
@@ -244,7 +232,6 @@
     -fx-background-color: #C8E6C9;
 }
 
-/* === LABELS ET TEXTES === */
 .label {
     -fx-text-fill: -fx-text-primary;
 }
@@ -266,7 +253,6 @@
     -fx-font-size: 12px;
 }
 
-/* === STYLES POUR LES PRIORITÉS === */
 .priority-high {
     -fx-text-fill: -fx-error-color;
     -fx-font-weight: bold;
@@ -282,7 +268,6 @@
     -fx-font-weight: bold;
 }
 
-/* === STYLES POUR LES STATUTS === */
 .status-todo {
     -fx-text-fill: #2196F3;
     -fx-font-weight: bold;
@@ -298,7 +283,6 @@
     -fx-font-weight: bold;
 }
 
-/* === SPLITPANE === */
 .split-pane {
     -fx-background-color: -fx-background-color;
 }
@@ -308,12 +292,11 @@
     -fx-padding: 0 2 0 2;
 }
 
-/* === VBOX ET HBOX === */
 .vbox, .hbox {
     -fx-spacing: 10;
 }
 
-/* === TOOLBAR === */
+
 .tool-bar {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -321,7 +304,6 @@
     -fx-padding: 8;
 }
 
-/* === BARRE DE STATUT === */
 .status-bar {
     -fx-background-color: #F5F5F5;
     -fx-border-color: -fx-divider-color;
@@ -334,7 +316,6 @@
     -fx-text-fill: -fx-text-secondary;
 }
 
-/* === DATEPICKER === */
 .date-picker {
     -fx-background-color: -fx-surface-color;
     -fx-border-color: -fx-divider-color;
@@ -352,7 +333,6 @@
     -fx-background-color: transparent;
 }
 
-/* === DIALOG PANES === */
 .dialog-pane {
     -fx-background-color: -fx-surface-color;
 }
@@ -377,7 +357,7 @@
     -fx-padding: 8 16 8 16;
 }
 
-/* === SCROLLBARS === */
+
 .scroll-bar {
     -fx-background-color: transparent;
 }
@@ -401,8 +381,6 @@
 .scroll-bar .thumb:pressed {
     -fx-background-color: #757575;
 }
-
-/* === SEPARATORS === */
 .separator {
     -fx-background-color: -fx-divider-color;
 }
@@ -411,22 +389,20 @@
     -fx-background-color: -fx-divider-color;
 }
 
-/* === ANIMATIONS ET TRANSITIONS === */
 .button, .toggle-button, .table-row-cell {
     -fx-transition: all 0.2s ease;
 }
 
-/* === FOCUS INDICATORS === */
+
 .button:focused,
 .text-field:focused,
 .text-area:focused,
 .combo-box:focused,
 .date-picker:focused,
 .toggle-button:focused {
-    -fx-effect: dropshadow(gaussian, derive(-fx-primary-color, 20%), 4, 0.2, 0, 0);
 }
 
-/* === RESPONSIVE ADJUSTMENTS === */
+
 @media screen and (max-width: 800px) {
     .root {
         -fx-font-size: 12px;
@@ -441,7 +417,6 @@
     }
 }
 
-/* === UTILITAIRES === */
 .text-bold {
     -fx-font-weight: bold;
 }
@@ -467,7 +442,7 @@
     -fx-background-radius: 8;
 }
 
-/* === VALIDATION STYLES === */
+
 .error-field {
     -fx-border-color: -fx-error-color;
     -fx-border-width: 2;

@@ -1,6 +1,7 @@
 package com.taskmanager.controller;
 
 import com.taskmanager.model.Task;
+import com.taskmanager.enums.Status;
 import com.taskmanager.service.TaskService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -27,20 +27,6 @@ public class MainController implements Initializable {
     private TaskService service;
     private FilteredList<Task> filteredTaskList;
 
-    @FXML private MenuItem newTaskMenuItem;
-    @FXML private MenuItem importMenuItem;
-    @FXML private MenuItem exportMenuItem;
-    @FXML private MenuItem exitMenuItem;
-    @FXML private MenuItem editTaskMenuItem;
-    @FXML private MenuItem deleteTaskMenuItem;
-    @FXML private MenuItem clearAllMenuItem;
-    @FXML private MenuItem showAllMenuItem;
-    @FXML private MenuItem showTodoMenuItem;
-    @FXML private MenuItem showInProgressMenuItem;
-    @FXML private MenuItem showCompletedMenuItem;
-    @FXML private MenuItem showOverdueMenuItem;
-    @FXML private MenuItem showTodayMenuItem;
-    @FXML private MenuItem aboutMenuItem;
 
 
     @FXML private Button editButton;
@@ -62,7 +48,6 @@ public class MainController implements Initializable {
     @FXML private TableColumn<Task, String> dueDateColumn;
     @FXML private TableColumn<Task, String> createdColumn;
 
-
     @FXML private TextArea taskTitleArea;
     @FXML private TextArea taskDescriptionArea;
     @FXML private Label taskPriorityValue;
@@ -82,8 +67,6 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Démarrage du contrôleur principal...");
-
 
         service = new TaskService();
 
@@ -94,9 +77,7 @@ public class MainController implements Initializable {
         resetTaskDetails();
         setTaskActionsEnabled(false);
 
-        System.out.println("Contrôleur principal initialisé!");
     }
-
 
     private void initializeTableColumns() {
         statusColumn.setCellValueFactory(data ->
@@ -108,25 +89,28 @@ public class MainController implements Initializable {
                 new SimpleStringProperty(data.getValue().getPriority().getDisplayName()));
 
         dueDateColumn.setCellValueFactory(data -> {
-            LocalDate date = data.getValue().getDueDate();
+                 LocalDate date = data.getValue().getDueDate();
             String dateText = (date != null) ?
+
                     date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
             return new SimpleStringProperty(dateText);
         });
 
         createdColumn.setCellValueFactory(data ->
-                new SimpleStringProperty(data.getValue().getCreatedAt()
-                        .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
+                new SimpleStringProperty(data.getValue().getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
+
+
 
         taskTableView.setRowFactory(tableView -> {
-            TableRow<Task> row = new TableRow<>();
+               TableRow<Task> row = new TableRow<>();
 
             row.itemProperty().addListener((observable, oldTask, newTask) -> {
                 if (newTask != null) {
                     row.getStyleClass().removeAll("overdue-task", "due-today-task", "completed-task");
 
-                    if (newTask.getStatus() == Task.Status.COMPLETED) {
+                    if (newTask.getStatus() == Status.COMPLETED) {
                         row.getStyleClass().add("completed-task");
+
                     } else if (newTask.isOverdue()) {
                         row.getStyleClass().add("overdue-task");
                     } else if (newTask.isDueToday()) {
@@ -134,12 +118,17 @@ public class MainController implements Initializable {
                     }
                 }
             });
+
             return row;
         });
 
+
         taskTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, previousTask, currentTask) -> {
-                    if (currentTask != null) {
+
+
+
+                       if (currentTask != null) {
                         displayTaskDetails(currentTask);
                         setTaskActionsEnabled(true);
                     } else {
@@ -155,24 +144,26 @@ public class MainController implements Initializable {
 
         ToggleGroup filterGroup = new ToggleGroup();
 
-        allFilterButton.setToggleGroup(filterGroup);
-        todoFilterButton.setToggleGroup(filterGroup);
-        inProgressFilterButton.setToggleGroup(filterGroup);
 
+                   allFilterButton.setToggleGroup(filterGroup);
+        todoFilterButton.setToggleGroup(filterGroup);
+            inProgressFilterButton.setToggleGroup(filterGroup);
         completedFilterButton.setToggleGroup(filterGroup);
-        overdueFilterButton.setToggleGroup(filterGroup);
+
+
+
+          overdueFilterButton.setToggleGroup(filterGroup);
+
         todayFilterButton.setToggleGroup(filterGroup);
 
         allFilterButton.setSelected(true);
 
-        sortComboBox.setItems(FXCollections.observableArrayList(
 
-                "Titre", "Priorité", "Échéance", "Statut", "Date de création"));
+              sortComboBox.setItems(FXCollections.observableArrayList("Titre", "Priorité", "Échéance", "Statut", "Date de création"));
         sortComboBox.setValue("Titre");
     }
 
-    private void setupEventHandlers() {
-
+       private void setupEventHandlers() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 performSearch();
@@ -181,7 +172,8 @@ public class MainController implements Initializable {
 
         searchField.setOnAction(event -> performSearch());
 
-        service.getTasks().addListener((javafx.collections.ListChangeListener<Task>) change -> {
+
+           service.getTasks().addListener((javafx.collections.ListChangeListener<Task>) change -> {
             refreshStatusBar();
         });
     }
@@ -191,13 +183,18 @@ public class MainController implements Initializable {
     }
 
     public void handleNewTask(ActionEvent event) {
-        openTaskDialog(null);
+
+
+
+         openTaskDialog(null);
     }
 
     public void handleEditTask(ActionEvent event) {
-        Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
+        Task selectedTask =      taskTableView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
-            openTaskDialog(selectedTask);
+
+
+             openTaskDialog(selectedTask);
         } else {
             displayMessage("Aucune sélection", "Veuillez sélectionner une tâche à modifier.");
         }
@@ -206,16 +203,19 @@ public class MainController implements Initializable {
     public void handleDeleteTask(ActionEvent event) {
         Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
+
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmAlert.setTitle("Confirmer la suppression");
             confirmAlert.setHeaderText("Supprimer la tâche");
-            confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer la tâche \"" +
-                    selectedTask.getTitle() + "\" ?");
+
+            confirmAlert.setContentText("Êtes-vous sûr de vouloir supprimer la tach \"" +  selectedTask.getTitle() + "\" ?");
 
             Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+
+
                 service.deleteTask(selectedTask);
-                statusLabel.setText("Tâche supprimée");
+                statusLabel.setText("tache supprimée");
             }
         } else {
             displayMessage("Aucune sélection", "Veuillez sélectionner une tâche à supprimer.");
@@ -229,6 +229,7 @@ public class MainController implements Initializable {
     private void performSearch() {
         String query = searchField.getText().trim();
         if (query.isEmpty()) {
+
             filteredTaskList.setPredicate(null);
         } else {
             filteredTaskList.setPredicate(task ->
@@ -244,6 +245,7 @@ public class MainController implements Initializable {
         if (selectedCriteria != null) {
             String criteriaKey = "";
             switch (selectedCriteria) {
+
                 case "Titre":
                     criteriaKey = "title";
                     break;
@@ -262,6 +264,7 @@ public class MainController implements Initializable {
             }
             if (!criteriaKey.isEmpty()) {
                 service.sortTasks(criteriaKey);
+
                 statusLabel.setText("Trié par " + selectedCriteria.toLowerCase());
             }
         }
@@ -273,18 +276,18 @@ public class MainController implements Initializable {
     }
 
     public void handleShowTodo(ActionEvent event) {
-        filteredTaskList.setPredicate(task -> task.getStatus() == Task.Status.TODO);
+        filteredTaskList.setPredicate(task -> task.getStatus() == Status.TODO);
         statusLabel.setText("Affichage: Tâches à faire");
+
     }
 
     public void handleShowInProgress(ActionEvent event) {
-        filteredTaskList.setPredicate(task -> task.getStatus() == Task.Status.IN_PROGRESS);
+        filteredTaskList.setPredicate(task -> task.getStatus() == Status.IN_PROGRESS);
         statusLabel.setText("Affichage: Tâches en cours");
     }
 
-
     public void handleShowCompleted(ActionEvent event) {
-        filteredTaskList.setPredicate(task -> task.getStatus() == Task.Status.COMPLETED);
+        filteredTaskList.setPredicate(task -> task.getStatus() == Status.COMPLETED);
         statusLabel.setText("Affichage: Tâches terminées");
     }
 
@@ -298,20 +301,21 @@ public class MainController implements Initializable {
         statusLabel.setText("Affichage: Tâches dues aujourd'hui");
     }
 
-
     public void handleMarkAsTodo(ActionEvent event) {
-        updateTaskStatus(Task.Status.TODO);
+        updateTaskStatus(Status.TODO);
     }
 
     public void handleMarkAsInProgress(ActionEvent event) {
-        updateTaskStatus(Task.Status.IN_PROGRESS);
+        updateTaskStatus(Status.IN_PROGRESS);
     }
 
     public void handleMarkAsCompleted(ActionEvent event) {
-        updateTaskStatus(Task.Status.COMPLETED);
+        updateTaskStatus(Status.COMPLETED);
     }
 
-    private void updateTaskStatus(Task.Status status) {
+    private void updateTaskStatus(Status status) {
+
+
         Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
             selectedTask.setStatus(status);
@@ -342,6 +346,7 @@ public class MainController implements Initializable {
     public void handleExport(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Exporter les tâches");
+
         chooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"));
         chooser.setInitialFileName("taches_export.json");
@@ -379,16 +384,8 @@ public class MainController implements Initializable {
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
         infoAlert.setTitle("À Propos");
         infoAlert.setHeaderText("Gestionnaire de Tâches JavaFX");
-        infoAlert.setContentText("Version 1.0.0\n\n" +
-                   "Application de gestion de tâches développée en JavaFX\n" +
-                "avec sauvegarde locale et interface moderne.\n\n" + "Technologies utilisées:\n" +
-                "• JavaFX 24\n" +
+        infoAlert.setContentText("Version 1.0.0\n\n" + "Application de gestion de tâches développée en JavaFX\n" + "avec sauvegarde locale et interface moderne.\n\n" + "Technologies utilisées:\n" +"• JavaFX 24\n" + "• FXML\n" + "• CSS\n" + "• Maven\n" + "• Jackson JSON");
 
-                "• FXML\n" +
-
-                "• CSS\n" +
-                "• Maven\n" +
-                "• Jackson JSON");
         infoAlert.showAndWait();
     }
 
@@ -423,13 +420,14 @@ public class MainController implements Initializable {
     }
 
     private void displayTaskDetails(Task task) {
-
-
         taskTitleArea.setText(task.getTitle());
         taskDescriptionArea.setText(task.getDescription());
+
         taskPriorityValue.setText(task.getPriority().getDisplayName());
+
         taskPriorityValue.setStyle("-fx-text-fill: " + task.getPriority().getColor());
         taskStatusValue.setText(task.getStatus().getDisplayName());
+
 
         String dueDateText = (task.getDueDate() != null) ?
                 task.getDueDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Aucune";
@@ -439,8 +437,7 @@ public class MainController implements Initializable {
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
 
         String completedText = (task.getCompletedAt() != null) ?
-                task.getCompletedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) :
-                "Non terminée";
+                task.getCompletedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) :  "Non terminée";
         taskCompletedValue.setText(completedText);
     }
 
@@ -448,7 +445,6 @@ public class MainController implements Initializable {
         taskTitleArea.clear();
         taskDescriptionArea.clear();
         taskPriorityValue.setText("");
-
         taskStatusValue.setText("");
         taskDueDateValue.setText("");
         taskCreatedValue.setText("");
@@ -459,16 +455,17 @@ public class MainController implements Initializable {
         editButton.setDisable(!enabled);
         deleteButton.setDisable(!enabled);
         markTodoButton.setDisable(!enabled);
+
+
         markInProgressButton.setDisable(!enabled);
         markCompletedButton.setDisable(!enabled);
     }
 
-
     private void refreshStatusBar() {
         long total = service.getTasks().size();
-        long todoTasks = service.countTasksByStatus(Task.Status.TODO);
-        long inProgressTasks = service.countTasksByStatus(Task.Status.IN_PROGRESS);
-        long completedTasks = service.countTasksByStatus(Task.Status.COMPLETED);
+        long todoTasks = service.countTasksByStatus(Status.TODO);
+        long inProgressTasks = service.countTasksByStatus(Status.IN_PROGRESS);
+        long completedTasks = service.countTasksByStatus(Status.COMPLETED);
 
         taskCountLabel.setText("Total: " + total + " tâches");
         todoCountLabel.setText("À faire: " + todoTasks);
@@ -477,14 +474,19 @@ public class MainController implements Initializable {
     }
 
     private void displayMessage(String title, String message) {
+
+
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
+
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
     private Stage getCurrentStage() {
+
+
         return (Stage) taskTableView.getScene().getWindow();
     }
 }
