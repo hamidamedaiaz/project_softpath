@@ -135,5 +135,5 @@ L'application sauvegarde automatiquement les données dans un fichier `tasks.jso
 ## 👨‍💻 Auteur
 
 **AMEDIAZ HAMID**
-- LinkedIn: [AMEDIAZ Hamid]([https://linkedin.com/in/votre-profil](https://www.linkedin.com/in/hamid-amediaz-4b8a14286/])
+- LinkedIn:https://www.linkedin.com/in/hamid-amediaz-4b8a14286/
 - Email: amediazhamid736@gmail.com
