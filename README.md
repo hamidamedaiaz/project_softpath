@@ -1,4 +1,4 @@
-# 📋 Gestionnaire de Tâches JavaFX
+#  Gestionnaire de Tâches JavaFX
 
 > Application moderne de gestion de tâches développée en JavaFX avec une interface intuitive et des fonctionnalités avancées de productivité.
 
@@ -6,33 +6,33 @@
 [![JavaFX](https://img.shields.io/badge/JavaFX-24.0.1-blue.svg)](https://openjfx.io/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-red.svg)](https://maven.apache.org/)
 
-## 🚀 Fonctionnalités Actuelles
+##  Fonctionnalités Actuelles
 
-### ✅ Gestion Complète des Tâches
+###  Gestion Complète des Tâches
 - **CRUD complet** : Créer, lire, modifier et supprimer des tâches
 - **Système de priorités** : Faible, Moyenne, Élevée avec codes couleur
 - **États multiples** : À faire, En cours, Terminée
 - **Dates d'échéance** avec alertes visuelles pour les tâches en retard
 - **Validation en temps réel** des formulaires avec feedback visuel
 
-### 🔍 Fonctionnalités de Recherche et Filtrage
+###  Fonctionnalités de Recherche et Filtrage
 - **Recherche textuelle** dans les titres et descriptions
 - **Filtres rapides** par statut (Toutes, À faire, En cours, Terminées)
 - **Filtres temporels** (En retard, Aujourd'hui)
 - **Tri personnalisable** par titre, priorité, échéance, statut ou date de création
 
-### 💾 Persistance et Import/Export
+###  Persistance et Import/Export
 - **Sauvegarde automatique** au format JSON
 - **Import/Export** de tâches pour la portabilité des données
 - **Rechargement automatique** au démarrage de l'application
 
-### 🎨 Interface Utilisateur Moderne
+###  Interface Utilisateur Moderne
 - **Design Material Design** avec thème cohérent
 - **Interface responsive** avec panneau de détails adaptatif
 - **Feedback visuel** pour les tâches en retard et dues aujourd'hui
 
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 - **Java 17+** - Langage de programmation principal
 - **JavaFX 24.0.1** - Framework d'interface utilisateur moderne
@@ -41,7 +41,7 @@
 - **Jackson JSON** - Sérialisation/désérialisation des données
 - **Maven** - Gestion des dépendances et build
 
-## ⚡ Installation et Démarrage
+##  Installation et Démarrage
 
 ### 1. Clonage du Repository
 ```bash
@@ -88,7 +88,7 @@ src/main/resources/
     └── styles.css                      # Feuille de style principale
 ```
 
-## 🎯 Guide d'Utilisation
+##  Guide d'Utilisation
 
 ### Création d'une Nouvelle Tâche
 1. Cliquez sur **"Ajouter"** ou utilisez `Fichier > Nouvelle Tâche`
@@ -107,15 +107,15 @@ src/main/resources/
 - Cliquez sur les **boutons de filtre** pour afficher certaines catégories
 - Utilisez le **menu déroulant de tri** pour organiser la liste
 
-## 🔧 Configuration
+##  Configuration
 
 L'application sauvegarde automatiquement les données dans un fichier `tasks.json` dans le répertoire de travail. Ce fichier est créé automatiquement lors de la première utilisation.
 
 
 
-## 📝 Roadmap de Développement
+##  Roadmap de Développement
 
-### Phase 1 - Fondations ✅
+### Phase 1 - Fondations 
 - [x] Architecture MVC robuste
 - [x] CRUD complet des tâches
 - [x] Système de priorités et statuts
@@ -132,7 +132,7 @@ L'application sauvegarde automatiquement les données dans un fichier `tasks.jso
 - [ ] Agent IA pour suggestions
 
 
-## 👨‍💻 Auteur
+##  Auteur
 
 **AMEDIAZ HAMID**
 - LinkedIn:https://www.linkedin.com/in/hamid-amediaz-4b8a14286/
